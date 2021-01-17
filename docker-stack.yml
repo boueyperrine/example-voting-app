@@ -37,7 +37,7 @@ services:
       update_config:
         parallelism: 2
       restart_policy:
-        condition: unless-stopped
+        condition: on-failure
   result:
     image: dockersamples/examplevotingapp_result:before
     ports:
@@ -98,7 +98,7 @@ services:
       - MONITOR=vote
       - DRY_RUN=false
       - SKIP_STARTUP_NOTIFICATIONS=true
-    restart: unless-stopped
+    restart: on-failure
       
 networks:
   frontend:
