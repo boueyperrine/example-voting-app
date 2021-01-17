@@ -11,6 +11,6 @@ RUN dotnet publish -c Release -o /out Worker.csproj
 FROM mcr.microsoft.com/dotnet/core/runtime:2.1
 
 WORKDIR /app
-ENTRYPOINT ["dotnet2", "Worker.dll"]
+ENTRYPOINT ["dotnet", "Worker.dll"]
 
 COPY --from=builder /out .
