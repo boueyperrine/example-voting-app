@@ -89,20 +89,17 @@ services:
         constraints: [node.role == manager]
 
   ouroboros:
-    image: pyouroboros/ouroboros
+    name: ouroboros
+    hostname: ouroboros
+    image: pyouroboros/ouroboros:latest
     networks:
       - supervision
-    depends_on:
-      - redis
     environment:
       - CLEANUP=true
       - INTERVAL=300
-      - LOG_LEVEL=info
-      - SELF_UPDATE=true
       - TZ=Europe/Paris
-      - MONITOR=vote
-      - DRY_RUN=false
-      - SKIP_STARTUP_NOTIFICATIONS=true
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:
       mode: replicated
       replicas: 1
