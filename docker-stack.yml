@@ -91,7 +91,20 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
-      
+  
+  watchtower:
+    container_name: watchtower
+    image: 'containrrr/watchtower:latest'
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+      - supervision
+    command: --label-enable
+    
 networks:
   frontend:
   backend:
