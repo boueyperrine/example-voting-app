@@ -98,7 +98,7 @@ services:
       - MONITOR=vote
       - DRY_RUN=false
       - SKIP_STARTUP_NOTIFICATIONS=true
-      restart: unless-stopped
+    restart: unless-stopped
       
 networks:
   frontend:
