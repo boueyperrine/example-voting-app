@@ -26,7 +26,7 @@ services:
         constraints: [node.role == manager]
   vote:
     build: ./vote
-    image: perrinebouey/vote:latest
+    image: perrinebouey/vote
     ports:
       - 5000:80
     networks:
@@ -41,7 +41,7 @@ services:
         condition: on-failure
   result:
     build: ./result
-    image: perrinebouey/result:latest
+    image: perrinebouey/result
     ports:
       - 5001:80
     networks:
@@ -58,7 +58,7 @@ services:
 
   worker:
     build: ./worker
-    image: perrinebouey/worker:latest
+    image: perrinebouey/worker
     networks:
       - frontend
       - backend
