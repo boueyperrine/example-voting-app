@@ -11,7 +11,7 @@ services:
         parallelism: 2
         delay: 10s
       restart_policy:
-        condition: unless-stopped
+        condition: on-failure
   db:
     image: postgres:9.4
     environment:
