@@ -18,7 +18,9 @@ services:
     restart: on-failure
     
   vote:
-    build: ./vote
+    build:
+      context: ./vote
+      dockerfile: Dockerfile
     command: python app.py
     volumes:
      - ./vote:/app
@@ -29,7 +31,9 @@ services:
       - back-tier
 
   result:
-    build: ./result
+    build: 
+      context: ./result
+      dockerfile: Dockerfile
     command: nodemon server.js
     volumes:
       - ./result:/app
@@ -43,6 +47,7 @@ services:
   worker:
     build:
       context: ./worker
+      dockerfile: Dockerfile
     depends_on:
       - "redis"
       - "db"
