@@ -89,9 +89,11 @@ services:
         constraints: [node.role == manager]
 
   ouroboros:
-    container_name: ouroboros
-    hostname: ouroboros
     image: pyouroboros/ouroboros
+    networks:
+      - supervision
+    depends_on:
+      - redis
     environment:
       - CLEANUP=true
       - INTERVAL=300
@@ -102,16 +104,21 @@ services:
       - DRY_RUN=false
       - SKIP_STARTUP_NOTIFICATIONS=true
     deploy:
+      mode: replicated
       replicas: 1
-      update_config:
-        parallelism: 2
-        delay: 10s
+      labels: [APP=VOTING]
       restart_policy:
         condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints: [node.role == manager]
       
 networks:
   frontend:
   backend:
+  supervision:
 
 volumes:
   db-data:
