@@ -11,7 +11,7 @@ services:
         parallelism: 2
         delay: 10s
       restart_policy:
-        condition: on-failure
+        condition: unless-stopped
   db:
     image: postgres:9.4
     environment:
@@ -37,7 +37,7 @@ services:
       update_config:
         parallelism: 2
       restart_policy:
-        condition: on-failure
+        condition: unless-stopped
   result:
     image: dockersamples/examplevotingapp_result:before
     ports:
@@ -67,7 +67,7 @@ services:
       replicas: 1
       labels: [APP=VOTING]
       restart_policy:
-        condition: on-failure
+        condition: unless-stopped
         delay: 10s
         max_attempts: 3
         window: 120s
