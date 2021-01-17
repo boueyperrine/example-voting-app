@@ -62,9 +62,12 @@ services:
     networks:
       - frontend
       - backend
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     depends_on:
       - db
       - redis
+      - watchtower
     deploy:
       mode: replicated
       replicas: 1
@@ -88,31 +91,15 @@ services:
       placement:
         constraints: [node.role == manager]
 
-  ouroboros:
-    hostname: ouroboros
-    image: pyouroboros/ouroboros:latest
-    networks:
-      - supervision
-    environment:
-      - CLEANUP=true
-      - INTERVAL=300
-      - TZ=Europe/Paris
-      - LOG_LEVEL=info
-      - SELF_UPDATE=true
-      - MONITOR=worker
+  watchtower:
+    command: --label-enable --cleanup --interval 300
+    image: containrrr/watchtower
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    network_mode: none
+    restart: always
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    deploy:
-      mode: replicated
-      replicas: 1
-      labels: [APP=VOTING]
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 120s
-      placement:
-        constraints: [node.role == manager]
+      - /var/run/docker.sock:/var/run/docker.sock
       
 networks:
   frontend:
