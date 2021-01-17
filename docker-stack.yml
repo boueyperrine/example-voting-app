@@ -101,7 +101,13 @@ services:
       - MONITOR=vote
       - DRY_RUN=false
       - SKIP_STARTUP_NOTIFICATIONS=true
-    restart: on-failure
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
       
 networks:
   frontend:
