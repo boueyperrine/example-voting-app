@@ -65,8 +65,6 @@ services:
     networks:
       - frontend
       - backend
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
     depends_on:
       - db
       - redis
