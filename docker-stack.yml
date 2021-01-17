@@ -85,6 +85,21 @@ services:
       placement:
         constraints: [node.role == manager]
 
+  ouroboros:
+    container_name: ouroboros
+    hostname: ouroboros
+    image: pyouroboros/ouroboros
+    environment:
+      - CLEANUP=true
+      - INTERVAL=300
+      - LOG_LEVEL=info
+      - SELF_UPDATE=true
+      - TZ=Europe/Paris
+      - MONITOR=vote
+      - DRY_RUN=false
+      - SKIP_STARTUP_NOTIFICATIONS=true
+      restart: unless-stopped
+      
 networks:
   frontend:
   backend:
