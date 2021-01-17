@@ -26,7 +26,7 @@ services:
         constraints: [node.role == manager]
   vote:
     build: ./vote
-    image: perrinebouey/vote
+    image: perrinebouey/vote:latest
     ports:
       - 5000:80
     networks:
