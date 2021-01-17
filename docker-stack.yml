@@ -89,7 +89,6 @@ services:
         constraints: [node.role == manager]
 
   ouroboros:
-    name: ouroboros
     hostname: ouroboros
     image: pyouroboros/ouroboros:latest
     networks:
