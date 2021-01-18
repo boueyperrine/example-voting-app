@@ -137,6 +137,10 @@ services:
 networks:
   frontend:
   backend:
+  monitoring:
+    driver: bridge 
 
 volumes:
   db-data:
+  prometheus-data: {}
+  grafana-data: {}
