@@ -116,9 +116,9 @@ services:
       - '--web.console.templates=/etc/prometheus/consoles'
       - '--storage.tsdb.retention=200h'
     expose:
-      - 9090
+      - 9091
     ports:
-      - "9090:9090"  
+      - "9090:9091"  
     networks:
       - monitoring
 
