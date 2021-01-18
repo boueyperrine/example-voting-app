@@ -92,8 +92,7 @@ services:
     image: dockupdater/dockupdater
     deploy:
       placement:
-        constraints:
-          - node.role == manager
+        constraints: [node.role == manager]
     
 networks:
   frontend:
