@@ -93,7 +93,7 @@ services:
         constraints: [node.role == manager]
   
   watchtower:
-    command: --label-enable --cleanup --interval 300
+    command: --label-enable --cleanup --interval 30
     image: containrrr/watchtower
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
