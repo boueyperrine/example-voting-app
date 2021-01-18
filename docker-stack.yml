@@ -36,6 +36,7 @@ services:
       - watchtower
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.scope=myscope"
     deploy:
       replicas: 2
       update_config:
@@ -93,10 +94,11 @@ services:
         constraints: [node.role == manager]
   
   watchtower:
-    command: --label-enable --cleanup --interval 30
+    command: --label-enable --cleanup --interval 30 --scope myscope
     image: containrrr/watchtower
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.scope=myscope"
     network_mode: none
     restart: always
     volumes:
