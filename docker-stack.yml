@@ -135,7 +135,7 @@ services:
       - monitoring
 
   node-exporter:
-        image: prom/node-exporter:0.12.0rc1
+        image: quay.io/prometheus/node-exporter
         ports:
             - '9100:9100'
 
