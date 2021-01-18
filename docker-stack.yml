@@ -138,6 +138,8 @@ networks:
   frontend:
   backend:
   monitoring:
+    external:
+      name: bridge
 
 volumes:
   db-data:
