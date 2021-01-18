@@ -19,6 +19,6 @@ scrape_configs:
     scrape_interval: 10s
     static_configs:
       - targets: ['192.168.239.159:9090']
-  - job_name: 'node'
+  - job_name: 'node-exporter'
     static_configs:
       - targets: ['192.168.239.159:9100','192.168.239.159:9100']
