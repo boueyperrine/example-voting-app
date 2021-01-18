@@ -133,7 +133,12 @@ services:
       - "3000:3000"  
     networks:
       - monitoring
-      
+
+  node-exporter:
+        image: prom/node-exporter:0.12.0rc1
+        ports:
+            - '9100:9100'
+
 networks:
   frontend:
   backend:
